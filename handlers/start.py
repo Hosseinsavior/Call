@@ -48,7 +48,7 @@ Made with ❤️ **@{UPDATES_CHANNEL}**""",
                 ],
                 [
                     InlineKeyboardButton(
-                        "📦 Source Code 📦", url="https://github.com/Itz-fork/Callsmusic-Plus"
+                        "📦 Source Code 📦", url="https://t.me/Arteshenoor"
                     )
                 ],
                 [
@@ -56,7 +56,7 @@ Made with ❤️ **@{UPDATES_CHANNEL}**""",
                         "🔰️ My Update Channel 🔰️", url=f"https://t.me/{UPDATES_CHANNEL}"
                     ),
                     InlineKeyboardButton(
-                        "⚜️ Support Group ⚜️", url="https://t.me/Nexa_bots"
+                        "⚜️ Support Group ⚜️", url="https://t.me/Savior_128"
                     )
                 ]
             ]
