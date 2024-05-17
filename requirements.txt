@@ -1,6 +1,5 @@
 pyrogram
 TgCrypto
-pytgcalls
 python-dotenv
 requests
 aiohttp
@@ -11,13 +10,12 @@ youtube-dl
 search_engine_parser
 wget
 python-arq
-youtube_dl
 aiofiles
 ffmpeg
-requests
 motor
 dnspython
 bs4
 psutil
 heroku3
 gitpython
+pytgcalls
