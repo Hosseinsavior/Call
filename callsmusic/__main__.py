@@ -1,33 +1,29 @@
-from pyrogram import filters
-from pyrogram import Client
+from pyrogram import Client, filters
 from pytgcalls import GroupCallFactory
 
-client = Client('pytgcalls')
-
-group_call_factory = GroupCallFactory(client)
-group_call = group_call_factory.get_file_group_call('input.raw')
+app = Client('pytgcalls')
+group_call = GroupCallFactory(app).get_file_group_call('input.raw')
 
 @group_call.on_network_status_changed
-async def on_network_changed(group_call, is_connected):
-    chat_id = MAX_CHANNEL_ID - group_call.full_chat.id
+async def on_network_changed(_, is_connected):
     if is_connected:
-        await client.send_message(chat_id, 'Successfully joined!')
+        await _.send_message(_.chat.id, 'Successfully joined!')
     else:
-        await client.send_message(chat_id, 'Disconnected from voice chat..')
+        await _.send_message(_.chat.id, 'Disconnected from voice chat..')
 
-@client.on_message(filters.outgoing & filters.command('join'))
-async def join_handler(client, message):
+@app.on_message(filters.command('join') & filters.me)
+async def join_handler(_, message):
     await group_call.start(message.chat.id)
 
-@client.on_message(filters.me & filters.command("start"))
-async def start_stream(client, message):
-    if message.chat.id in group_call_instances.active_chats:
-        queues.put(message.chat.id, 'out.raw')
+@app.on_message(filters.command("start") & filters.me)
+async def start_music(_, message):
+    if _.chat.id in group_call.instances.active_chats:
+        queues.put(_.chat.id, 'out.raw')
     else:
-        await group_call_instances.set_stream(message.chat.id, 'out.raw')
+        await group_call_instances.set_stream(_.chat.id, 'out.raw')
 
-@client.on_message(filters.me & filters.command("end"))
-async def end_stream(client, message):
-    await group_call_instances.stop(message.chat.id)
+@app.on_message(filters.command("end") & filters.me)
+async def end_music(_, message):
+    await group_call_instances.stop(_.chat.id)
 
-client.run()
+app.run()
