@@ -18,4 +18,4 @@ bs4
 psutil
 heroku3
 gitpython
-pytgcalls
+pytgcalls==2.0.0
